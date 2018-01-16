@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>ユーザ一覧</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    </head>
+    <body>
+        <form th:action="@{/user/list}" method="POST">
+            <table>
+                <tr>
+                    <td>ユーザ名 : <input type="text" id="userName" name="userName" th:value="${userName}"/></td>
+                    <td>グループ名 : <input type="text" id="groupName" name="groupName" th:value="${groupName}"/></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="検索"/></td>
+                </tr>
+            </table>
+        </form>
+        <div th:if="${resultSize > 0}"><label th:text="${resultSize}"></label>件</div>
+        <table border="1" th:if="${resultSize > 0}">
+            <tr>
+                <td>#</td>
+                <td>ユーザID</td>
+                <td>ユーザ名称</td>
+                <td>グループID</td>
+                <td>グループ名称</td>
+            </tr>
+            <tr th:each="user : ${result}">
+                <td>
+                    <a th:href="@{'/user/detail/' + ${user.userId}}">詳細</a>
+                </td>
+                <td th:text="${user.userId}"></td>
+                <td th:text="${user.userName}"></td>
+                <td th:text="${user.groupId}"></td>
+                <td th:text="${user.group.groupName}"></td>
+            </tr>
+        </table>
+    </body>
+</html>

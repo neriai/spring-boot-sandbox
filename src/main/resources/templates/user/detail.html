@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>ユーザ詳細</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    </head>
+    <body>
+        <form method="post" action="#" th:action="@{'/user/detail/' + ${result.userId}}" th:object="${form}">
+            <input type="text" th:field="${result.userId}" readonly="readonly" />
+            <input type="text" th:field="${result.userName}" />
+            <input type="submit" name="update" value="更新する" />
+        </form>
+    </body>
+</html>
